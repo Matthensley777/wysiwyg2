@@ -51,13 +51,31 @@ var famousPeople = [
     }
 ]
 
-famousPeople.map(function(beatles) {
-    $("#famousPeople").append(`<div class="personCard"><h3> Title: ${beatles.title}</h3> <p> Name: ${beatles.name} </p> <p> Bio: ${beatles.bio} </p> <img src=${beatles.image}></div>`);
+famousPeople.forEach(function(beatles) {
+    $("#famousPeople").append(`<div class="personCard"><h3> Title: ${beatles.title}</h3> <p> Name: ${beatles.name} </p> <p id="bio"> Bio: ${beatles.bio} </p> <img src=${beatles.image}></div>`);
 });
 
-$(".delete").click(function() {
-    $(this).parent().remove();
+
+$(".personCard").click(function() {
+$("#text").focus();
+var bio = $(this).find("#bio");
+var input = $("#text");
+input.val(bio.text());
+input.keyup(function() {
+$(this).addClass(".personCard");
+$("#text").keyup(function() {
+        $("#text").val("");
+    
+})
+    });
+
 });
+
+
+
+// $(".delete").click(function() {
+//     $(this).parent().remove();
+// });
 
 
 
